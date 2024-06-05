@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.sombra.ui.theme.SombraTheme
@@ -140,11 +141,31 @@ fun RadioGroup(options: List<String>, selectedOption: String, onOptionSelected: 
     }
 }
 
+@Preview(showSystemUi =  true)
 @Composable
 fun ClockUI(remainingTime: Long) {
     val minutes = TimeUnit.SECONDS.toMinutes(remainingTime)
     val seconds = TimeUnit.SECONDS.toSeconds(remainingTime) % 60
     val formattedTime = String.format("%02d:%02d", minutes, seconds)
+
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Text(
+            text = "Round X",
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(bottom = 2.dp)
+
+        )
+        Text(
+            modifier = Modifier.padding(bottom = 16.dp),
+            text = "out of Y",
+            style = MaterialTheme.typography.titleMedium
+        )
 
     Surface(
         modifier = Modifier
@@ -162,7 +183,9 @@ fun ClockUI(remainingTime: Long) {
             Text(
                 text = formattedTime,
                 style = MaterialTheme.typography.titleLarge
-            )
+
+                )
+            }
         }
     }
 }
