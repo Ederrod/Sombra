@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -154,7 +155,7 @@ fun ClockUI(remainingTime: Long) {
             .fillMaxWidth()
             .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Text(
             text = "Round X",
             style = MaterialTheme.typography.titleLarge,
@@ -162,28 +163,31 @@ fun ClockUI(remainingTime: Long) {
 
         )
         Text(
-            modifier = Modifier.padding(bottom = 16.dp),
             text = "out of Y",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(bottom = 12.dp)
         )
-
-    Surface(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        color = Color(0xFF333333),
-        shape = RoundedCornerShape(8.dp),
-//        elevation = 4.dp
-    ) {
         Box(
             contentAlignment = Alignment.Center,
-            modifier = Modifier.padding(16.dp)
-        ) {
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .wrapContentHeight()
+        ){
+        Surface(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            color = Color(0xFF333333),
+            shape = RoundedCornerShape(8.dp),
+//        elevation = 4.dp
+        ){
             Text(
-                text = formattedTime,
-                style = MaterialTheme.typography.titleLarge
-
+                    text = formattedTime,
+                    fontSize = 82.sp,
+                    style = MaterialTheme.typography.titleLarge,
+                    textAlign = TextAlign.Center
                 )
             }
         }
